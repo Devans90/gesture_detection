@@ -16,7 +16,11 @@ class DatasetIndex:
 
 
 def build_dataset_index(root_dir: str | Path) -> DatasetIndex:
-    """Index samples stored as <root>/<label>/<session>/sample_XXX.json."""
+    """Index samples stored as <root>/<label>/<session>/sample_XXX.json.
+
+    The scaffold assumes that directory shape and writes filenames using a three-digit
+    sample counter, though larger counters are still readable by the same glob.
+    """
     root = Path(root_dir)
     labels: set[str] = set()
     session_ids: set[str] = set()
@@ -36,7 +40,7 @@ def build_dataset_index(root_dir: str | Path) -> DatasetIndex:
 
 def load_window(path: str | Path) -> GestureWindow:
     payload = json.loads(Path(path).read_text())
-    readings = [SensorReading(**reading) for reading in payload["readings"]]
+    readings = [SensorReading(**reading) for reading in payload.get("readings", [])]
     return GestureWindow(
         started_at=payload["started_at"],
         label=payload.get("label"),

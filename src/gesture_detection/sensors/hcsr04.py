@@ -37,7 +37,7 @@ class HCSR04Sensor(DistanceSensor):
 
         distance_cm = round(raw_distance * 100.0, 2)
 
-        if distance_cm <= 0:
+        if distance_cm < 0:
             return SensorReading(timestamp=timestamp, distance_cm=None, status="dropped")
         if distance_cm > self._max_distance_cm:
             return SensorReading(timestamp=timestamp, distance_cm=None, status="out_of_range")

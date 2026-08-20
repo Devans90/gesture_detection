@@ -24,6 +24,7 @@ class ActivityGate:
 class CaptureSession:
     def __init__(self, sensor: DistanceSensor, sample_hz: float, max_distance_cm: float) -> None:
         self._sensor = sensor
+        self._sample_hz = sample_hz
         self._interval = 1.0 / sample_hz
         self._max_distance_cm = max_distance_cm
 
@@ -38,7 +39,7 @@ class CaptureSession:
         return reading
 
     def collect_window(self, seconds: float, label: str | None = None) -> GestureWindow:
-        total_samples = max(1, int(seconds / self._interval))
+        total_samples = max(1, int(seconds * self._sample_hz))
         window = GestureWindow(started_at=time.time(), label=label)
 
         for _ in range(total_samples):
