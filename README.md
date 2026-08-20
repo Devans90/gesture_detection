@@ -37,7 +37,7 @@ Those files contain the places to add feature preparation, PyTorch training, val
 Create a starter config if you want a fresh copy:
 
 ```bash
-python -m gesture_detection.cli init-config
+PYTHONPATH=src python -m gesture_detection.cli init-config
 ```
 
 Inspect the local scaffold with the mock sensor and console display:

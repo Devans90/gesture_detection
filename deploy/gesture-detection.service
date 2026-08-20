@@ -5,6 +5,7 @@ After=network-online.target
 [Service]
 Type=simple
 WorkingDirectory=/home/pi/gesture_detection
+Environment=PYTHONPATH=/home/pi/gesture_detection/src
 ExecStart=/usr/bin/python3 -m gesture_detection.cli --config /home/pi/gesture_detection/configs/default.json run
 Restart=always
 RestartSec=3
