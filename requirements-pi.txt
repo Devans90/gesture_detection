@@ -1,0 +1,5 @@
+# Raspberry Pi runtime dependencies (no PyTorch/MLflow)
+RPi.GPIO
+numpy
+luma.oled
+Pillow

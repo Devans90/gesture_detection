@@ -1,0 +1,4 @@
+# Training / development machine dependencies
+torch
+mlflow
+numpy
