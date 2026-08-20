@@ -38,6 +38,7 @@ class GestureDetectionApp:
 
         try:
             while True:
+                loop_started = time.time()
                 reading = self._capture_session.read_once()
                 self._rolling_window.append(reading)
                 snapshot = self._rolling_window.snapshot()
@@ -55,7 +56,10 @@ class GestureDetectionApp:
                     ])
                     self._cooldown_until = time.time() + self._config.capture.window_seconds
 
-                time.sleep(1.0 / self._config.capture.sample_hz)
+                elapsed = time.time() - loop_started
+                remaining = (1.0 / self._config.capture.sample_hz) - elapsed
+                if remaining > 0:
+                    time.sleep(remaining)
         except KeyboardInterrupt:
             self._display.show_lines(["Gesture detector", "Stopped", "", ""])
         finally:

@@ -8,7 +8,7 @@ from gesture_detection.domain import GestureWindow
 
 
 def write_gesture_window(root_dir: str | Path, session_id: str, sample_index: int, window: GestureWindow) -> Path:
-    label = window.label or "unlabelled"
+    label = window.label or "unlabeled"
     output_dir = Path(root_dir) / label / session_id
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / f"sample_{sample_index:03d}.json"

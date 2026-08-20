@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -21,16 +24,15 @@ class ConfigTests(unittest.TestCase):
             self.assertEqual(loaded.capture.sample_hz, config.capture.sample_hz)
 
 
-
-
 class CliTests(unittest.TestCase):
     def test_init_config_does_not_require_default_config(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             repo_root = Path(temp_dir)
             output = repo_root / 'generated.json'
 
-            import subprocess, sys
-
+            project_root = Path(__file__).resolve().parents[1]
+            env = dict(os.environ)
+            env['PYTHONPATH'] = str(project_root / 'src')
             result = subprocess.run(
                 [
                     sys.executable,
@@ -42,8 +44,8 @@ class CliTests(unittest.TestCase):
                     '--output',
                     str(output),
                 ],
-                cwd='/home/runner/work/gesture_detection/gesture_detection',
-                env={'PYTHONPATH': 'src'},
+                cwd=project_root,
+                env=env,
                 capture_output=True,
                 text=True,
                 check=True,
