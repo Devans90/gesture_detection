@@ -1,0 +1,32 @@
+{
+  "capture": {
+    "sample_hz": 20.0,
+    "window_seconds": 2.0,
+    "min_distance_cm": 2.0,
+    "max_distance_cm": 250.0,
+    "gate_range_cm": 8.0,
+    "gate_min_valid_samples": 8
+  },
+  "collection": {
+    "output_dir": "data/raw",
+    "gesture_seconds": 2.0,
+    "settle_seconds": 1.0
+  },
+  "sensor": {
+    "driver": "mock",
+    "trigger_pin": 23,
+    "echo_pin": 24,
+    "max_distance_cm": 250.0
+  },
+  "display": {
+    "driver": "console",
+    "width": 128,
+    "height": 64,
+    "i2c_port": 1,
+    "i2c_address": "0x3C"
+  },
+  "model": {
+    "implementation_path": "src/gesture_detection/ml/user_model.py",
+    "weights_path": "artifacts/model_weights.json"
+  }
+}

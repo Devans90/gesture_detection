@@ -1,0 +1,13 @@
+[Unit]
+Description=Ultrasonic gesture detection scaffold
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/gesture_detection
+ExecStart=/usr/bin/python3 -m gesture_detection.cli --config /home/pi/gesture_detection/configs/default.json run
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
