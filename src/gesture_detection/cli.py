@@ -84,6 +84,11 @@ def init_config_command(output: str) -> None:
 
 def main() -> None:
     args = parse_args()
+
+    if args.command == "init-config":
+        init_config_command(args.output)
+        return
+
     config = load_config(args.config)
 
     if args.command == "run":
@@ -92,8 +97,6 @@ def main() -> None:
         collect_command(config, label=args.label, samples=args.samples)
     elif args.command == "inspect-dataset":
         inspect_dataset_command(config)
-    elif args.command == "init-config":
-        init_config_command(args.output)
     else:  # pragma: no cover - argparse enforces the command list.
         raise ValueError(f"Unsupported command: {args.command}")
 

@@ -21,5 +21,38 @@ class ConfigTests(unittest.TestCase):
             self.assertEqual(loaded.capture.sample_hz, config.capture.sample_hz)
 
 
+
+
+class CliTests(unittest.TestCase):
+    def test_init_config_does_not_require_default_config(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo_root = Path(temp_dir)
+            output = repo_root / 'generated.json'
+
+            import subprocess, sys
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    '-m',
+                    'gesture_detection.cli',
+                    '--config',
+                    str(repo_root / 'missing-default.json'),
+                    'init-config',
+                    '--output',
+                    str(output),
+                ],
+                cwd='/home/runner/work/gesture_detection/gesture_detection',
+                env={'PYTHONPATH': 'src'},
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+
+            self.assertIn('Wrote', result.stdout)
+            self.assertTrue(output.exists())
+            self.assertFalse((repo_root / 'missing-default.json').exists())
+
+
 if __name__ == '__main__':
     unittest.main()
