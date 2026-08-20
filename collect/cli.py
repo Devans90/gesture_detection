@@ -99,7 +99,8 @@ def main() -> None:
 
         # Wait for a window's worth of motion
         start = time.time()
-        while len(collected) == len(collected):  # loop until segmenter fires
+        prev = len(collected)
+        while len(collected) == prev:  # loop until segmenter fires
             distance = sensor.read()
             buffer.push(distance)
             try:
@@ -112,7 +113,7 @@ def main() -> None:
                 _finish()
                 sys.exit(1)
 
-            if len(collected) > sum(1 for _ in []) or time.time() - start > 5:
+            if len(collected) > prev or time.time() - start > 5:
                 # collected count changed or 5 s timeout — break inner loop
                 break
             time.sleep(interval)

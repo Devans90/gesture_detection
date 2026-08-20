@@ -96,8 +96,7 @@ class GestureSegmenter:
         The rolling buffer to watch.
     on_gesture:
         Callback that receives the window as a ``numpy.ndarray`` of shape
-        ``(WINDOW_SIZE,)`` and a boolean flag indicating whether motion was
-        detected.
+        ``(WINDOW_SIZE,)``.
     cooldown_windows:
         How many windows to skip after firing, to avoid double-triggering.
     """
