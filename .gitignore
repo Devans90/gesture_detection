@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Gesture detection project
+data/raw/*.csv
+data/processed/
+models/best_model.pt
+models/weights.npz
+mlruns/

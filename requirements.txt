@@ -1,0 +1,16 @@
+numpy>=1.24
+# On the Pi (ARMv6) numpy can be installed from apt or pip with --no-binary
+
+# --- development / training machine only (not needed on the Pi) ---
+# torch          # install separately with the correct wheel for your platform
+# mlflow
+
+# --- Pi display ---
+luma.oled
+Pillow
+
+# --- Pi GPIO ---
+# RPi.GPIO      # pre-installed on Raspbian; uncomment if needed elsewhere
+
+# --- testing ---
+pytest

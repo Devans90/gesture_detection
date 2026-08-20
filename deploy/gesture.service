@@ -1,0 +1,18 @@
+[Unit]
+Description=Gesture Detection
+After=network.target
+
+[Service]
+Type=simple
+# Adjust User and WorkingDirectory to match your Pi setup
+User=pi
+WorkingDirectory=/home/pi/gesture_detection
+ExecStart=/usr/bin/python3 /home/pi/gesture_detection/main.py
+Restart=on-failure
+RestartSec=5s
+
+# Ensure GPIO and I2C are available before starting
+# (i2c-dev and gpio groups must be set for the User above)
+
+[Install]
+WantedBy=multi-user.target
