@@ -59,7 +59,7 @@ def conv1d(
 
     Parameters
     ----------
-    x      : (out_channels_in, length)  — single sample, no batch dim
+    x      : (in_channels, length)  — single sample, no batch dim
     weight : (out_channels, in_channels, kernel_size)
     bias   : (out_channels,)
     padding: int — zero-pad each end of the length dimension

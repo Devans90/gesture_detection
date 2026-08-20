@@ -154,13 +154,13 @@ def main() -> None:
 
             if val_acc > best_val_acc:
                 best_val_acc = val_acc
-                torch.save(model.state_dict(), "models/best_model.pt")
+                torch.save(model.state_dict(), config.MODEL_BEST_PT_PATH)
 
         mlflow.log_metric("best_val_acc", best_val_acc)
         print(f"\nBest val accuracy: {best_val_acc:.3f}")
 
     # Load best weights before exporting
-    model.load_state_dict(torch.load("models/best_model.pt", map_location=device))
+    model.load_state_dict(torch.load(config.MODEL_BEST_PT_PATH, map_location=device, weights_only=True))
     _export_weights(model, config.MODEL_WEIGHTS_PATH)
 
 

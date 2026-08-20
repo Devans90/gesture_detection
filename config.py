@@ -38,6 +38,7 @@ NUM_CLASSES = len(GESTURE_LABELS)
 # ---------------------------------------------------------------------------
 DATA_DIR = "data/raw"
 PROCESSED_DIR = "data/processed"
+MODEL_BEST_PT_PATH = "models/best_model.pt"
 MODEL_WEIGHTS_PATH = "models/weights.npz"
 MLFLOW_TRACKING_URI = "mlruns"
 

@@ -119,7 +119,7 @@ class HCSR04:
         Replace or extend this for richer simulation scenarios.
         """
         import random
-        return round(random.uniform(5.0, 35.0), 2)
+        return round(random.uniform(config.MIN_DISTANCE_CM, config.MAX_DISTANCE_CM), 2)
 
     @staticmethod
     def _clamp(distance_cm: float) -> float | None:

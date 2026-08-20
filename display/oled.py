@@ -26,7 +26,7 @@ except ImportError:
     _LUMA_AVAILABLE = False
 
 try:
-    from PIL import Image, ImageDraw, ImageFont as PILImageFont
+    from PIL import ImageFont as PILImageFont
     _PIL_AVAILABLE = True
 except ImportError:
     _PIL_AVAILABLE = False
