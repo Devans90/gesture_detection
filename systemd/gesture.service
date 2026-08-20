@@ -1,0 +1,14 @@
+[Unit]
+Description=Gesture Detection
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/gesture_detection
+ExecStart=/usr/bin/python3 main.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
