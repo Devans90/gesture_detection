@@ -16,6 +16,7 @@ class DatasetIndex:
 
 
 def build_dataset_index(root_dir: str | Path) -> DatasetIndex:
+    """Index samples stored as <root>/<label>/<session>/sample_XXX.json."""
     root = Path(root_dir)
     labels: set[str] = set()
     session_ids: set[str] = set()

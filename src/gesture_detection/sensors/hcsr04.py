@@ -30,7 +30,12 @@ class HCSR04Sensor(DistanceSensor):
 
     def read(self) -> SensorReading:
         timestamp = time.time()
-        distance_cm = round(self._sensor.distance * 100.0, 2)
+        raw_distance = self._sensor.distance
+
+        if raw_distance is None:
+            return SensorReading(timestamp=timestamp, distance_cm=None, status="dropped")
+
+        distance_cm = round(raw_distance * 100.0, 2)
 
         if distance_cm <= 0:
             return SensorReading(timestamp=timestamp, distance_cm=None, status="dropped")

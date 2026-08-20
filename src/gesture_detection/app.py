@@ -4,7 +4,7 @@ import time
 
 from gesture_detection.capture import ActivityGate, CaptureSession, RollingWindow
 from gesture_detection.config import AppConfig
-from gesture_detection.domain import GestureWindow
+from gesture_detection.domain import GestureWindow, SensorReading
 from gesture_detection.factories import build_classifier, build_display, build_sensor
 
 
@@ -67,12 +67,12 @@ class GestureDetectionApp:
             self._display.close()
 
     @staticmethod
-    def _distance_text(reading) -> str:
+    def _distance_text(reading: SensorReading) -> str:
         if reading.distance_cm is None:
             return "--"
         return f"{reading.distance_cm:.1f}cm"
 
-    def _status_lines(self, reading, snapshot) -> list[str]:
+    def _status_lines(self, reading: SensorReading, snapshot: list[SensorReading]) -> list[str]:
         valid_count = sum(1 for item in snapshot if item.is_valid)
         return [
             "Gesture detector",
