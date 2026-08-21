@@ -1,0 +1,7 @@
+session_id,participant,date,label,n_examples
+session_20260820_194716,test_user,2026-08-20,wave,0
+session_20260820_194716,alice,2026-08-20,swipe_left,1
+session_20260820_194716,unknown,2026-08-20,push,3
+session_20260820_194838,test_user,2026-08-20,wave,0
+session_20260820_194838,alice,2026-08-20,swipe_left,1
+session_20260820_194838,unknown,2026-08-20,push,3
